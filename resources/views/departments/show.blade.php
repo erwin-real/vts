@@ -19,7 +19,6 @@
                 @else
                     none
                 @endif
-                </p>
                 <p> <strong>Members</strong>:
                 @if(count($dept->members) > 0)
                     <ol>
@@ -30,18 +29,21 @@
                 @else
                     none
                 @endif
+                <html>
+                <body></body>
+                </html>
                 <p> <strong>Description</strong>: {{ $dept->desc }} </p>
                 <a href="{{ action('DepartmentController@edit', $dept->id) }}" class="btn btn-outline-info float-left mr-2">Edit</a>
                 
-                {{--@if(Auth::user()->type == 'admin' || Auth::user()->id == $dept->user_id)--}}
+                @if(Auth::user()->type == 'admin' || Auth::user()->id == $dept->user_id)
                     <form method="POST" action="{{ action('DepartmentController@destroy', $dept->id) }}" class="float-left">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div>
-                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            <button type="submit" class="btn btn-outline-primary margin-left float-right" >Delete</button>
                         </div>
                     </form>
-                {{--@endif--}}
+                @endif
                 <div class="clearfix"></div>
             </div>
         </div>
